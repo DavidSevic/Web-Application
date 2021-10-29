@@ -1,0 +1,54 @@
+
+<app-meni-admin *ngIf = "ulogovan.tip == 'admin'"></app-meni-admin>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Postignuti ugovori</h1>
+
+    <table>
+        <tr>
+            <td>Procenat prodaje: </td>
+            <td><output type = "text">{{procenatProd}}</output></td>
+            <td><input type = "text" [(ngModel)] = "procenatProdNovi" *ngIf = "ulogovan.tip == 'admin'"></td>
+        </tr>
+        <tr>
+            <td>Procenat izdavanja: </td>
+            <td><output type = "text">{{procenatIzd}}</output></td>
+            <td><input type = "text" [(ngModel)] = "procenatIzdNovi" *ngIf = "ulogovan.tip == 'admin'"></td>
+        </tr>
+    </table>
+    <button (click) = "izmenaProcenta()" *ngIf = "ulogovan.tip == 'admin'">Izmenite</button><br/><br/>
+    
+    Prodaje:<br/><br/>
+    <table class = "kartica">
+        <tr *ngFor = "let k of kupovine" class = "test1">
+            <td>Nekretnina: </td>
+            <td>{{nekretninaKoja(k)}}</td>
+            <td>Kupac: </td>
+            <td>{{kupacKoJe(k)}}</td>
+            <td>Vlasnik: </td>
+            <td>{{vlasnikKoJe(k)}}</td>
+            <td>Datum: </td>
+            <td>[{{k.datumVreme}}]</td>
+        </tr>
+    </table><output type = "text">Prihod od prodaja: {{prihodProdaje}}€</output>
+    Izdavanja:<br/><br/>
+    <table class = "kartica">
+        <tr *ngFor = "let i of iznajmljivanja" class = "test2">
+            <td>Nekretnina: </td>
+            <td>{{nekretninaKoja(i)}}</td>
+            <td>Kupac: </td>
+            <td>{{kupacKoJe(i)}}</td>
+            <td>Vlasnik: </td>
+            <td>{{vlasnikKoJe(i)}}</td>
+            <td>Od: </td>
+            <td>({{i.datumOd}})</td>
+            <td>Do: </td>
+            <td>({{i.datumDo}})</td>
+            <td>Datum: </td>
+            <td>[{{i.datumVreme}}]</td>
+        </tr>
+    </table><output type = "text">Prihod od izdavanja: {{prihodIzdavanja}}€</output>
+
+</div>

@@ -1,0 +1,73 @@
+<app-meni-korisnik></app-meni-korisnik>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Izabrana nekretnina: {{odabrana.naziv}}</h1>
+
+
+    <br/>
+    <table class = "kartica">
+        <tr>
+            <table> 
+                <tr>
+                    <td *ngFor = "let s of odabrana.galerija">
+                        <img src = "assets/{{s}}" *ngIf = "s.includes('jpg')"> 
+                        <video controls *ngIf = "s.includes('mp4')">
+                            <source src="assets/{{s}}" type="video/mp4">
+                          </video>
+                    </td>
+                </tr>
+            </table>
+        </tr>
+        <tr>Naziv: {{odabrana.naziv}}</tr>
+        <tr>Adresa: {{odabrana.adresa}}</tr>
+        <tr>Tip: {{odabrana.tip}}</tr>
+        <tr>Spratovi: {{spratovi()}}</tr>
+        <tr>Kvadratura {{odabrana.kvadratura}} <span>&#13217;</span></tr>
+        <tr>Sobe: {{odabrana.sobe}}</tr>
+        <tr>Nameštena: {{namestenost()}}</tr>
+        <tr>Tip oglasa: {{odabrana.tipOglasa}}</tr>
+        <tr>Cena: {{odabrana.cena}}€<output type = "text" *ngIf = "odabrana.tipOglasa == 'izdavanje'"> mesečno</output></tr>
+        <tr>Vlasnik: {{vlasnik.ime}} {{vlasnik.prezime}}</tr>
+
+
+    </table> <br/> <br/>
+
+
+    <div *ngIf="odabrana.tipOglasa == 'izdavanje'">
+
+        Izaberite period u kome želite da iznajmite nekretninu:<br />
+        <table>
+            <tr>
+                <td>Od: </td>
+                <td><input type="date" [(ngModel)]="datumOd"></td>
+            </tr>
+            <tr>
+                <td>Do: </td>
+                <td><input type="date" [(ngModel)]="datumDo"></td>
+
+            </tr>
+        </table>
+            <button (click)="iznajmi()">Iznajmite</button>
+
+    </div>
+
+    <div *ngIf="odabrana.tipOglasa == 'prodaja'">
+
+        <table>
+            <tr>
+                <td>Izaberite opciju za plaćanje nekretnine:</td>
+            </tr>
+            <tr>
+                <td>Gotovina: <input type="radio" [(ngModel)]="placanje" name="radioP" value="gotovina">
+                    Kredit: <input type="radio" [(ngModel)]="placanje" name="radioP" value="kredit" id="ajde"></td>
+            </tr>
+        </table>
+        <button (click)="kupi()">Kupite</button>
+
+    </div><br/><br/>
+
+    <button (click) = "kontakt()" style="width: 25%;">Kontaktirajte vlasnika</button>
+
+
+</div>

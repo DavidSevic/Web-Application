@@ -1,0 +1,118 @@
+<app-meni-admin></app-meni-admin>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Izmene korisnika</h1>
+
+
+    <div *ngIf="stanje == 'svi'">
+
+        <button (click)="noviKor()">Novi korisnik</button><br /><br />
+
+        <table *ngFor="let k of korisnici" class="kartica">
+            <br /><br />
+            <tr>
+                <td>Ime: </td>
+                <td><output type="text"> {{k.ime}}</output></td>
+                <td><input type="text" [(ngModel)]="ime"></td>
+                <td><button (click)="promeni(k, 'ime')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Prezime: </td>
+                <td><output type="text"> {{k.prezime}}</output></td>
+                <td><input type="text" [(ngModel)]="prezime"></td>
+                <td><button (click)="promeni(k, 'prezime')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Korisničko Ime: </td>
+                <td><output type="text"> {{k.korisnickoIme}}</output></td>
+                <td><input type="text" [(ngModel)]="korisnickoIme"></td>
+                <td><button (click)="promeni(k, 'korIme')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Tip: </td>
+                <td><output type="text"> {{k.tip}}</output></td>
+                <td><input type="text" [(ngModel)]="tip"></td>
+                <td><button (click)="promeni(k, 'tip')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Slika: </td>
+                <td><img src="assets/{{k.slika}}"></td>
+                <td><input type="file" [(ngModel)]="slika"></td>
+                <td><button (click)="promeni(k, 'slika')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Email: </td>
+                <td><output type="text"> {{k.email}}</output></td>
+                <td><input type="text" [(ngModel)]="email"></td>
+                <td><button (click)="promeni(k, 'email')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Grad: </td>
+                <td><output type="text"> {{k.grad}}</output></td>
+                <td><input type="text" [(ngModel)]="grad"></td>
+                <td><button (click)="promeni(k, 'grad')">Promenite</button></td>
+            </tr><br />
+            <tr>
+                <td>Drzava: </td>
+                <td><output type="text"> {{k.drzava}}</output></td>
+                <td><input type="text" [(ngModel)]="drzava"></td>
+                <td><button (click)="promeni(k, 'drzava')">Promenite</button></td>
+            </tr><br /><br />
+            <tr>{{poruka}}</tr>
+            <tr><button (click) = "brisanje(k)">Obrišite korisnika</button></tr>
+        </table><br /><br />
+    </div>
+    <div *ngIf="stanje == 'novi'">
+
+        Unesite sledeće podatke:<br /><br/>
+
+        <table>
+            <tr>
+                <td>Ime: </td>
+                <td><input type="text" [(ngModel)]="ime"></td>
+            </tr>
+            <tr>
+                <td>Prezime: </td>
+                <td><input type="text" [(ngModel)]="prezime"></td>
+            </tr>
+            <tr>
+                <td>Korisničko Ime: </td>
+                <td><input type="text" [(ngModel)]="korisnickoIme"></td>
+            </tr>
+            <tr>
+                <td>Lozinka: </td>
+                <td><input type="password" [(ngModel)]="lozinka"></td>
+            </tr>
+            <tr>
+                <td>Potvrda lozinke: </td>
+                <td><input type="password" [(ngModel)]="lozinkaP"></td>
+            </tr>
+            <tr>
+                <td>Tip: </td>
+                <td><input type="text" [(ngModel)]="tip"></td>
+            </tr>
+            <tr>
+                <td>Slika: </td>
+                <td><input type="file" [(ngModel)]="slika"></td>
+            </tr>
+            <tr>
+                <td>Email: </td>
+                <td><input type="text" [(ngModel)]="email"></td>
+            </tr>
+            <tr>
+                <td>Grad: </td>
+                <td><input type="text" [(ngModel)]="grad"></td>
+            </tr>
+            <tr>
+                <td>Drzava: </td>
+                <td><input type="text" [(ngModel)]="drzava"></td>
+            </tr><br/>
+            <tr>
+                <td><button (click)="unos()">Unesite novog korisnika</button></td>
+                <td><button (click) = "povratak()">Povratak</button></td>
+            </tr>
+        </table>
+
+    </div>
+</div>

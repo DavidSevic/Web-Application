@@ -1,0 +1,64 @@
+<app-meni-korisnik *ngIf = "ulogovan.tip == 'korisnik'"></app-meni-korisnik>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+
+ 
+<div class="content">
+
+    <h1 class = "ljubicasto" *ngIf = "prikaz != 'nova'">Vaše konverzacije</h1>
+    <h2 class = "ljubicasto" *ngIf = "prikaz == 'nova'">Nova poruka</h2>
+
+    <div *ngIf = "prikaz == 'aktivne'">
+
+        Aktivne konverzacije:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click) = "promeni()">Arhivirane</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click) = "novaPoruka()" style = "font-size: 80%; width : 120px;">Nova poruka</button> <br /><br />
+        <table>
+            <tr *ngFor="let k of konverzacijeAkt" class = "konv">
+                <td><output *ngIf="neprocitano(k) == true">&bull;</output></td>
+                <td><a routerLink="konverzacija" (click)="otvoriKon(k)" class="crno">{{k.naslov}}</a></td>
+                <td>---{{drugiKorisnik(k)}}</td>
+                <td>[{{k.najskorija}}]</td>
+                <td><button (click) = "arhiviraj(k)">Arhivirajte</button></td>
+            </tr><br/>
+        </table>
+
+    </div>
+ 
+    <div *ngIf = "prikaz == 'arhivirane'">
+
+        Arhivirane konverzacije:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click) = "promeni()">Aktivne</button><br /><br />
+        <table>
+            <tr *ngFor="let k of konverzacijeArh" class = "konv">
+                <td><output *ngIf="neprocitano(k) == true">&bull;</output></td>
+                <td><a routerLink="konverzacija" (click)="otvoriKon(k)" class="crno">{{k.naslov}}</a></td>
+                <td>---{{drugiKorisnik(k)}}</td>
+                <td>[{{k.najskorija}}]</td>
+                <td><button (click) = "aktiviraj(k)">Aktivirajte</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf = "prikaz == 'nova'">
+        <table>
+            <tr>
+                <td>Poruka za korisnika:</td>
+                <td><input type = "text" [(ngModel)] = "primalac"></td>
+            </tr>
+            <tr>
+                <td>Za nekretninu:</td>
+                <td><select [(ngModel)] = "izabranaNek">
+                    <option *ngFor = "let n of nekretninePoruka" value = "{{n.naziv}}"><output type = "text" *ngIf = "n.prodata == false">{{n.naziv}}</output></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>Text poruke:</td>
+                <td><textarea [(ngModel)] = "textPoruke"></textarea></td>
+            </tr>
+            <tr>
+                <td><button (click) = "posalji()">Pošaljite</button></td>
+                <td><button (click) = "povratak()">Povratak</button></td>
+            </tr>
+        </table>
+        
+    </div>
+
+</div>

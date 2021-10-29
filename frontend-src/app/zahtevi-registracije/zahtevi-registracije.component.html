@@ -1,0 +1,46 @@
+
+<app-meni-admin></app-meni-admin>
+
+<div class="content">
+    
+    <h1 class = "ljubicasto">Zahtevi za nove korisnike</h1><br/>
+    
+    <output type = "text" *ngIf = "registracije.length == 0">Trenutno nema zahteva za nove korisnike</output> 
+
+    <div *ngIf = "registracije.length > 0">
+    <table *ngFor = "let r of registracije" class = "kartica">
+        <tr>
+            <td>Ime: </td>
+            <td><output type = "text">  {{r.ime}}</output></td>
+        </tr><br/>
+        <tr>
+            <td>Prezime: </td>
+            <td><output type = "text">  {{r.prezime}}</output></td>
+        </tr><br/>
+        <tr>
+            <td>Korisničko Ime: </td>
+            <td><output type = "text">  {{r.korisnickoIme}}</output></td>
+        </tr><br/>
+        <tr>
+            <td>Slika: </td>
+            <td><img src = "assets/{{r.slika}}"></td>
+        </tr><br/>
+        <tr>
+            <td>Email: </td>
+            <td><output type = "text">  {{r.email}}</output></td>
+        </tr><br/>
+        <tr>
+            <td>Grad: </td>
+            <td><output type = "text">  {{r.grad}}</output></td>
+        </tr><br/>
+        <tr>
+            <td>Drzava: </td>
+            <td><output type = "text">  {{r.drzava}}</output></td>
+        </tr><br/>
+        <tr>
+            <td><button (click) = "prihvati(r)">Prihvatite</button></td>
+            <td><button (click) = "odbij(r)">Odbijte</button></td>
+        </tr>
+    </table> <br/>
+</div>
+</div>

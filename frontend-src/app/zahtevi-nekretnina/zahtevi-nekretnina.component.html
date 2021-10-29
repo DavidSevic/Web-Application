@@ -1,0 +1,41 @@
+
+<app-meni-admin *ngIf = "ulogovan.tip == 'admin'"></app-meni-admin>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Zahtevi za nove nekretnine</h1><br/>
+    
+    <output type = "text" *ngIf = "nekretnine.length == 0">Trenutno nema zahteva za nove nerketnine</output>
+
+    <output type = "text" *ngIf = "nekretnine.length > 0">Izaberite zahtev: </output><br/><br/>
+    <select [(ngModel)] = "izabranaId" (change)="izaberi()" *ngIf = "nekretnine.length > 0">
+        <option *ngFor = "let n of nekretnine" value = {{n.id}}>{{n.naziv}}</option>
+    </select>
+    <br/><br/>
+            <table *ngIf = "izabrana != null" class = "kartica">
+                <tr>
+                    <table> 
+                        <tr>
+                            <td *ngFor = "let s of izabrana.galerija">
+                                <img src = "assets/{{s}}" *ngIf = "s.includes('jpg')"> 
+                                <video controls *ngIf = "s.includes('mp4')">
+                                    <source src="assets/{{s}}" type="video/mp4">
+                                  </video>
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+                <tr>Naziv: {{izabrana.naziv}}</tr>
+                <tr>Adresa: {{izabrana.adresa}}</tr>
+                <tr>Tip: {{izabrana.tip}}</tr>
+                <tr>Spratovi: {{spratovi(izabrana)}}</tr>
+                <tr>Kvadratura {{izabrana.kvadratura}} <span>&#13217;</span></tr>
+                <tr>Sobe: {{izabrana.sobe}}</tr>
+                <tr>Nameštena: {{namestenost(izabrana)}}</tr>
+                <tr>Tip oglasa: {{izabrana.tipOglasa}}</tr>
+                <tr>Cena: {{izabrana.cena}}€<output type = "text" *ngIf = "izabrana.tipOglasa == 'izdavanje'"> mesečno</output></tr>
+                <tr>Vlasnik: {{vlasnik(izabrana)}}</tr>
+                <tr><button (click) = "odobri()">Odobrite</button></tr>
+            </table> <br/> <br/>
+</div>

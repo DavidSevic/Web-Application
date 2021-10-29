@@ -1,0 +1,55 @@
+<app-meni-korisnik *ngIf = "ulogovan.tip == 'korisnik'"></app-meni-korisnik>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+<app-meni-admin *ngIf = "ulogovan.tip == 'admin'"></app-meni-admin>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Vaši podaci</h1>
+
+    <table>
+        <tr>
+            <td>Ime: </td>
+            <td><output type = "text">  {{ulogovan.ime}}</output></td>
+            <td><input type = "text" [(ngModel)] = "ime"></td>
+            <td><button (click) = "promeni('ime')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Prezime: </td>
+            <td><output type = "text">  {{ulogovan.prezime}}</output></td>
+            <td><input type = "text" [(ngModel)] = "prezime"></td>
+            <td><button (click) = "promeni('prezime')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Korisničko Ime: </td>
+            <td><output type = "text">  {{ulogovan.korisnickoIme}}</output></td>
+            <td><input type = "text" [(ngModel)] = "korisnickoIme"></td>
+            <td><button (click) = "promeni('korIme')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Slika: </td>
+            <td><img src = "assets/{{ulogovan.slika}}"></td>
+            <td><input type = "file" [(ngModel)] = "slika"></td>
+            <td><button (click) = "promeni('slika')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Email: </td>
+            <td><output type = "text">  {{ulogovan.email}}</output></td>
+            <td><input type = "text" [(ngModel)] = "email"></td>
+            <td><button (click) = "promeni('email')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Grad: </td>
+            <td><output type = "text">  {{ulogovan.grad}}</output></td>
+            <td><input type = "text" [(ngModel)] = "grad"></td>
+            <td><button (click) = "promeni('grad')">Promenite</button></td>
+        </tr><br/>
+        <tr>
+            <td>Drzava: </td>
+            <td><output type = "text">  {{ulogovan.drzava}}</output></td>
+            <td><input type = "text" [(ngModel)] = "drzava"></td>
+            <td><button (click) = "promeni('drzava')">Promenite</button></td>
+        </tr>
+    </table> <br/>
+
+    <output type = "text" class = "crveno">{{poruka}}</output><br/><br/>
+</div>

@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+.h {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #41327e;
+    text-align: center;
+  }
+
+.f {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #41327e;
+    text-align: center;
+  }

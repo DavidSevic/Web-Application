@@ -1,0 +1,171 @@
+* {
+    box-sizing: border-box;
+  }
+
+  /* Style the side navigation */
+  .sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+  }
+  
+  
+  /* Side navigation links */
+  .sidenav a {
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color on hover */
+  .sidenav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Style the content */
+  .content {
+    margin-left: 200px;
+    padding-left: 20px;
+
+  }
+
+  .font {
+    font-style: oblique;
+}
+
+.crveno {
+    color : red;
+}
+
+tr.okvir td{
+    border: 2px solid black;
+    outline: #41327e solid 5px;
+    background-color: #978bc4;
+    margin: auto;  
+    padding: 20px;
+    text-align: center;
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 80%;
+    outline: #41327e solid 5px;
+    border: 2px solid black;
+    background-color: #978bc4;
+    padding: 20px;
+    margin: auto; 
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container {
+    padding: 2px 16px;
+  }
+
+  .manja {
+    max-width: 50%;
+  }
+
+  .crno {
+    color : black;
+    text-decoration: none;
+  }
+
+
+
+body {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 0 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .container {
+    border: 2px solid #41327e;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .darker {
+    border-color: #31255e;
+    background-color: #978bc4;
+  }
+  
+  .container::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .container img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  .container img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+
+  .time-right {
+    float: right;
+    color: #31255e;
+  }
+  
+  .time-left {
+    float: left;
+    color: #978bc4;
+  }
+
+  .desno {
+    float : right;
+  }
+
+  .centar {
+    align-content: center;
+  }
+
+  button{
+    /*width: 100px;
+    height: 40px;*/
+    background-color: #978bc4;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #7465b1;
+  }
+
+  .konv {
+    outline: #41327e solid 1px;
+  }
+
+  .ljubicasto {
+    color : #31255e;
+  }
+
+  .sve {
+    column-count: 3;
+    width: 100%;
+  }

@@ -1,0 +1,50 @@
+<app-meni-korisnik></app-meni-korisnik>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">Dobrodošli</h1>
+
+    Promovisane nekretnine:<br/><br/>
+
+    <table>
+        <tr>
+            <td *ngFor="let n of nekretnine">
+                <a (click) = "odabir(n.id)"><div class="card" *ngIf="n.promovisana == true">
+                    <img src={{slikePromo[n.id]}} alt="KucaP" style="width:100%">
+                </div></a>
+            </td>
+        </tr>
+    </table> <br /> <br />
+
+    <table>
+        <tr>
+            <td><label for="grad">Grad: </label></td>
+            <td><input type="text" id="grad" name="grad" placeholder="Grad nekretnine..." [(ngModel)] = "grad"></td>
+            <td><label for="cenaOd">Cena od: </label></td>
+            <td><input type="text" id="cenaOd" name="cenaOd" placeholder="Min cena nekretnine..." [(ngModel)] = "cenaOd"></td>
+            <td><label for="cenaDo">Cena do: </label></td>
+            <td><input type="text" id="cenaDo" name="cenaDo" placeholder="Max cena nekretnine..." [(ngModel)] = "cenaDo"></td>
+            <td><button (click) = "pretraga()">Pretrazite</button></td>
+        </tr>
+    </table> <br/> <br/>
+    
+    <table *ngIf = "pretrazeno == true">
+        <tr *ngFor = "let n of nekretninePretraga">
+            <a (click) = "odabir(n.id)"><div class="card">
+                <img src = {{slike[n.id]}} alt="Kuca" style="width:100%" class = "manja">
+                <div class="container">
+                  <h4><b>{{n.naziv}}</b></h4>
+                  <p>Mesto: {{opstGrad(n.id)}}<br/>
+                    Cena: {{n.cena}}€<output type = "text" *ngIf = "n.tipOglasa == 'izdavanje'"> mesečno</output><br/>
+                    Tip: {{tipNek(n.id)}}<br/>
+                    Kvadratura: {{n.kvadratura}} <span>&#13217;</span><br/>
+                    Oglas: {{n.tipOglasa}}
+                 </p>
+                </div>
+              </div></a>
+        </tr>
+    </table>
+
+    <output type = "text" class = "crveno">{{poruka}}</output>
+
+</div>

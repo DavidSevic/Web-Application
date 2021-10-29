@@ -1,0 +1,22 @@
+<app-meni-admin></app-meni-admin>
+
+<div class="content">
+ 
+    <h1>
+        Dobrodošli
+    </h1>
+        <select [(ngModel)] = "izbor" (change) = "promena()">
+        <option value = "poCeniProd">Nekretnine na prodaju po cenovnim rangovima</option>
+        <option value = "poCeniIzd">Nekretnine za izdavanje po cenovnim rangovima</option>
+        <option value = "poGradu">Nekretnine po gradovima</option>
+        <option value = "poBroju">Nekretnine po tipovima i oglasima</option>
+    </select>
+
+        <div class="containerPie">
+            <h2 class = "ajde">{{naslov}}</h2>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+</div>

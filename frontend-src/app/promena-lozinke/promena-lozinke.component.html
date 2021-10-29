@@ -1,0 +1,31 @@
+<app-meni-korisnik *ngIf = "ulogovan.tip == 'korisnik'"></app-meni-korisnik>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+<app-meni-admin *ngIf = "ulogovan.tip == 'admin'"></app-meni-admin>
+
+<div class="content">
+
+    <h1 class = "ljubicasto">
+        Promena lozinke
+    </h1>
+    
+    <table>
+        <tr>
+            <td>Stara lozinka: </td>
+            <td><input type = "password" [(ngModel)] = "stara"></td>
+        </tr>
+        <tr>
+            <td>Nova lozinka: </td>
+            <td><input type = "password" [(ngModel)] = "nova"></td>
+        </tr>
+        <tr>
+            <td>Potvrda nove lozinke: </td>
+            <td><input type = "password" [(ngModel)] = "novaP"></td>
+        </tr>
+        <tr>
+            <button (click) = "promena()">Promenite</button>
+        </tr>
+    </table>
+
+    <output type = "text" class = "crveno">{{poruka}}</output>
+
+</div>

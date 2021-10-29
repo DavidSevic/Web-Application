@@ -1,0 +1,86 @@
+<app-meni-korisnik *ngIf = "ulogovan.tip == 'korisnik'"></app-meni-korisnik>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+
+<div class="content">
+    
+    <h2>Konverzacija sa korisnikom: {{drugiKorisnik.ime}} {{drugiKorisnik.prezime}},
+         u vezi nekretnine: {{otvorena.naslov}}</h2>
+
+     <button *ngIf = "otvorena.arhivirana == false" (click) = "arhAkt()">Arhivirajte</button> 
+     <button *ngIf = "otvorena.arhivirana == true" (click) = "arhAkt()">Aktivirajte</button>&nbsp;
+     <button (click) = "blokiranje()" *ngIf = "blok == false">Blokirajte korisnika</button>
+     <button (click) = "odblokiranje()" *ngIf = "blok == true">Odblokirajte korisnika</button>&nbsp;
+     <button (click) = "dajPonudu()" *ngIf = "tip == 'Vlasnik: '">Dajte ponudu</button>&nbsp;{{porukaProdata}}
+
+     <table> 
+        <tr *ngFor = "let p of otvorena.poruke">
+            <div class = "container" *ngIf = "p.posiljalac == ulogovan.id || (agenti.includes(p.posiljalac) && ulogovan.id == 0)">
+                <p>{{koSalje(p.posiljalac)}} {{p.text}}</p>
+                <span class = "time-left">{{p.datumVreme}}</span>
+            </div>
+            <div class = "container darker" *ngIf = "p.primalac == ulogovan.id">
+                <p>{{tip}} {{p.text}}</p>
+                <span class="time-right">{{p.datumVreme}}</span>
+            </div>
+        </tr>
+    </table>
+
+
+    <div *ngIf = "blokP == false">
+
+        Nova poruka:<br/>
+        <textarea [(ngModel)] = "textPoruke"></textarea><br/>
+        <button (click) = "posalji()">Pošaljite</button><br/>
+        {{poruka}}
+
+    </div>
+    <div *ngIf = "blokP == true">
+
+        Nova poruka:<br/>
+        <textarea [(ngModel)] = "textPoruke" disabled = "true" name = "p">cao</textarea><br/>
+        <button (click) = "posalji()" disabled = "true">Pošaljite</button><br/>
+        <output type = "text" class = "crveno">{{porukaBlok}}</output>
+    </div>
+
+        <output type = "text" *ngIf = "tip == 'Kupac: '">Ponude: </output><br/>
+        
+        <table *ngIf = "ovaNek.tipOglasa == 'prodaja'" class = "konv">
+            <tr *ngFor = "let kup of ponudeKup">
+                <td>{{kup.tip}}</td><td>Datuma: {{kup.datumVreme}}</td>
+                <td><button (click) = "prihvati(kup)" *ngIf = "kup.prihvaceno == false && kup.potvrdjeno == false">Prihvatite</button></td>
+                <td><button (click) = "odbij(kup)" *ngIf = "kup.prihvaceno == false && kup.potvrdjeno == false">Odbijte</button></td>
+                <td><output *ngIf = "kup.prihvaceno == true && kup.potvrdjeno == false"> - Prihvaćeno</output></td>
+                    <td><output *ngIf = "kup.potvrdjeno == true"> - Potvrdjeno</output></td>
+            </tr>
+        </table>
+        <table *ngIf = "ovaNek.tipOglasa == 'izdavanje'" class = "konv">
+            <tr *ngFor = "let izn of ponudeIzn">
+                <td>Od: {{izn.datumOd}} Do: {{izn.datumDo}}</td><td>Datuma: {{izn.datumVreme}}</td>
+                <td><button (click) = "prihvati(izn)" *ngIf = "izn.prihvaceno == false">Prihvatite</button>
+                <button (click) = "odbij(izn)" *ngIf = "izn.prihvaceno == false">Odbijte</button>
+                <output *ngIf = "izn.prihvaceno == true && izn.potvrdjeno == false"> - Prihvaćeno</output>
+                <output *ngIf = "izn.potvrdjeno == true"> - Potvrdjeno</output></td>
+            </tr>
+
+        </table>
+
+        <div *ngIf = "tip == 'Vlasnik: '">
+
+            <output type = "text">Vaše ponude: </output><br/>
+
+            <table *ngIf = "ovaNek.tipOglasa == 'prodaja'" class = "konv">
+                <tr *ngFor = "let k of kupacPonudeKup">
+                    <td>{{k.tip}}</td><td>Datuma: {{k.datumVreme}}</td>
+                    <td><output *ngIf = "k.prihvaceno == true && k.potvrdjeno == false"> - Prihvaćeno</output></td>
+                    <td><output *ngIf = "k.potvrdjeno == true"> - Potvrdjeno</output></td>
+                </tr>
+            </table>
+            <table *ngIf = "ovaNek.tipOglasa == 'izdavanje'" class = "konv">
+                <tr *ngFor = "let i of kupacPonudeIzn">
+                    <td>Od: {{i.datumOd}} Do: {{i.datumDo}}</td><td>Datuma: {{i.datumVreme}}</td>
+                    <td><output *ngIf = "i.prihvaceno == true && i.potvrdjeno == false"> - Prihvaćeno</output></td>
+                    <td><output *ngIf = "i.potvrdjeno == true"> - Potvrdjeno</output></td>
+                </tr>
+            </table>
+        </div>
+</div>

@@ -1,0 +1,102 @@
+
+<app-meni-admin *ngIf = "ulogovan.tip == 'admin'"></app-meni-admin>
+<app-meni-agent *ngIf = "ulogovan.tip == 'radnik'"></app-meni-agent>
+ 
+<div class="content">
+
+    <h1 class = "ljubicasto">Sve nekretnine u agenciji</h1>
+
+    <button (click) = "novaNek()">Nova nekretnina</button> <br/><br/>
+
+    <div *ngIf = "stanje == 'sve'">
+
+            <table class = "kartica" *ngFor = "let n of nekretnine">
+                <tr>
+                    <table> 
+                        <tr>
+                            <td *ngFor = "let s of n.galerija">
+                                <img src = "assets/{{s}}" *ngIf = "s.includes('jpg')"> 
+                                <video controls *ngIf = "s.includes('mp4')">
+                                    <source src="assets/{{s}}" type="video/mp4">
+                                  </video>
+                            </td>
+                        </tr>
+                    </table>
+                </tr>
+                <tr>Naziv: {{n.naziv}}</tr>
+                <tr>Adresa: {{n.adresa}}</tr>
+                <tr>Tip: {{n.tip}}</tr>
+                <tr>Spratovi: {{spratoviKoji(n)}}</tr>
+                <tr>Kvadratura {{n.kvadratura}} <span>&#13217;</span></tr>
+                <tr>Sobe: {{n.sobe}}</tr>
+                <tr>Nameštena: {{namestenostJel(n)}}</tr>
+                <tr>Tip oglasa: {{n.tipOglasa}}</tr>
+                <tr>Cena: {{n.cena}}€<output type = "text" *ngIf = "n.tipOglasa == 'izdavanje'"> mesečno</output></tr>
+                <tr>Vlasnik: {{vlasnik(n)}}</tr>
+                <tr><button *ngIf = "(agent == true || admin == true) && n.promovisana == false" (click) = "promo(n)">Dodajte u promovisane</button></tr>
+                <tr><button *ngIf = "(agent == true || admin == true) && n.promovisana == true" (click) = "promo(n)">Uklonite iz promovisanih</button></tr>
+            </table>
+        </div>
+
+        <div *ngIf = "stanje == 'nova'">
+
+            Unesite podatke za novu nekretninu:<br/><br/>
+
+        <table>
+            <tr>
+                <td>Naziv: </td>
+                <td><input type = "text" [(ngModel)] = "naziv"></td>
+            </tr>
+            <tr>
+                <td>Adresa: </td>
+                <td><input type = "text" [(ngModel)] = "adresa"></td>
+            </tr>
+            <tr>
+                <td>Tip: </td>
+                <td>Kuća <input type = "radio" [(ngModel)] = "tip" value = "kuca" name = "tip">
+                    Stan <input type = "radio" [(ngModel)] = "tip" value = "stan" name = "tip"></td>
+            </tr>
+            <tr>
+                <td>Spratovi: </td>
+                <td><input type = "text" [(ngModel)] = "spratovi"></td>
+            </tr>
+            <tr>
+                <td>Kvadratura: </td>
+                <td><input type = "text" [(ngModel)] = "kvadratura"></td>
+            </tr>
+            <tr>
+                <td>Sobe: </td>
+                <td><input type = "text" [(ngModel)] = "sobe"></td>
+            </tr>
+            <tr>
+                <td>Nameštenost: </td>
+                <td>Da <input type = "radio" [(ngModel)] = "namestenost" value = "true" name = "namestenost">
+                    Ne <input type = "radio" [(ngModel)] = "namestenost" value = "false" name = "namestenost"></td>
+            </tr>
+            <tr>
+                <td>Tip oglasa: </td>
+                <td>Prodaja <input type = "radio" [(ngModel)] = "tipOglasa" value = "prodaja" name = "tipOglasa">
+                    Izdavanje <input type = "radio" [(ngModel)] = "tipOglasa" value = "izdavanje" name = "tipOglasa"></td>
+            </tr>
+            <tr>
+                <td>Cena: </td>
+                <td><input type = "text" [(ngModel)] = "cena"></td>
+            </tr>
+            <tr>
+                <td>Promovisanje: </td>
+                <td>Da <input type = "radio" [(ngModel)] = "promovisanje" value = "true" name = "promovisanje">
+                Ne <input type = "radio" [(ngModel)] = "promovisanje" value = "false" name = "promovisanje"></td>
+            </tr>
+            <tr>
+                <td>Galerija: </td>
+                <td><input type = "file" [(ngModel)] = "slikeNova" multiple id = "idSlike"></td>
+            </tr>
+        </table><br/>
+
+        <button (click) = "postavi()" style = "width: 15%;">Postavite oglas</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <button (click) = "povratak()" style = "width: 15%;">Povratak</button>
+
+
+        </div>
+</div>

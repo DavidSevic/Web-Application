@@ -1,0 +1,66 @@
+<h1 class = "ljubicasto">Dobrodošli na naš sajt Terracina agencije za nekretnine</h1>
+
+Ukoliko imate nalog, ulogujte se:<br/>
+<form>
+    <tr>
+        <td><label for="korime">Korisničko ime: </label></td>
+        <td><input type="text" id="korime" name="korime" placeholder="Vaše korisničko ime.." [(ngModel)] = "korisnickoIme"></td>
+    </tr>
+    <tr>
+        <td><label for="lozinka">Lozinka: </label></td>
+        <td><input type="password" id="lozinka" name="lozinka" placeholder="Vaša lozinka.." [(ngModel)] = "lozinka"></td>
+    </tr>
+    <tr>
+        <td><label for="tip">Tip: </label></td>
+        <td>Administrator<input type = "radio" value = "admin" name = "tip" [(ngModel)] = "tip">
+            Korisnik<input type = "radio" value = "korisnik" name = "tip" [(ngModel)] = "tip">
+            Radnik<input type = "radio" value = "radnik" name = "tip" [(ngModel)] = "tip"></td>
+    </tr>
+    <tr>
+        <td><button (click) = "ulogovanje()">Ulogujte Se</button></td>
+    </tr>
+</form>
+
+Ukoliko nemate nalog, možete se registrovati
+<a routerLink = "registracija">ovde</a>. <br/><br/>
+
+Promovisane nekretnine: <br/><br/>
+
+<table>
+    <tr>
+        <td *ngFor = "let n of nekretnine">
+            <div class="card" *ngIf = "n.promovisana == true">
+                <img src = {{slikePromo[n.id]}} alt="KucaP">&nbsp;
+            </div>
+        </td>
+    </tr>
+</table> <br/> <br/>
+ 
+<table>
+    <tr>
+        <td><label for="grad">Grad: </label></td>
+        <td><input type="text" id="grad" name="grad" placeholder="Grad nekretnine..." [(ngModel)] = "grad"></td>
+        <td><label for="cenaOd">Cena od: </label></td>
+        <td><input type="text" id="cenaOd" name="cenaOd" placeholder="Min cena nekretnine..." [(ngModel)] = "cenaOd"></td>
+        <td><label for="cenaDo">Cena do: </label></td>
+        <td><input type="text" id="cenaDo" name="cenaDo" placeholder="Max cena nekretnine..." [(ngModel)] = "cenaDo"></td>
+        <td><button (click) = "pretraga()">Pretrazite</button></td>
+    </tr>
+</table> <br/> <br/>
+ 
+<table *ngIf = "pretrazeno == true"> 
+    <tr *ngFor = "let n of nekretninePretraga">
+        <div class="card">
+            <img src = {{slike[n.id]}} alt="Kuca" class = "manja">
+            <div class="container">
+              <h4><b>{{n.naziv}}</b></h4>
+              <p>Mesto: {{opstGrad(n.id)}}<br/>
+                 Cena: {{n.cena}}€<output type = "text" *ngIf = "n.tipOglasa == 'izdavanje'"> mesečno</output><br/>
+                 Tip: {{tipNek(n.id)}}<br/>
+                 Kvadratura: {{n.kvadratura}} <span>&#13217;</span><br/>
+                 Oglas: {{n.tipOglasa}}
+              </p>
+            </div>
+          </div>
+    </tr>
+</table>

@@ -1,0 +1,47 @@
+<h1 class = "ljubicasto">Registracija</h1>
+
+Unesite sledeće podatke:<br/>
+
+<table>
+    <tr>
+        <td>Ime: </td>
+        <td><input type="text" [(ngModel)] = "ime"></td>
+    </tr>
+    <tr>
+        <td>Prezime: </td>
+        <td><input type = "text" [(ngModel)] = "prezime"></td>
+    </tr>
+    <tr>
+        <td>Korisničko Ime: </td>
+        <td><input type = "text" [(ngModel)] = "korisnickoIme"></td>
+    </tr>
+    <tr>
+        <td>Lozinka: </td>
+        <td><input type = "password" [(ngModel)] = "lozinka"></td>
+    </tr>
+    <tr>
+        <td>Potvrda lozinke: </td>
+        <td><input type = "password" [(ngModel)] = "lozinkaP"></td>
+    </tr>
+    <tr>
+        <td>Slika: </td>
+        <td><input type = "file" [(ngModel)] = "slika"></td>
+    </tr>
+    <tr>
+        <td>Email: </td>
+        <td><input type = "text" [(ngModel)] = "email"></td>
+    </tr>
+    <tr>
+        <td>Grad: </td>
+        <td><input type = "text" [(ngModel)] = "grad"></td>
+    </tr>
+    <tr>
+        <td>Drzava: </td>
+        <td><input type = "text" [(ngModel)] = "drzava"></td>
+    </tr>
+    <tr>
+        <td><button (click) = "registrovanje()">Registrujte Se</button></td>
+        <td><button (click) = "povratak()" style = "width: 55%;">Povratak</button></td>
+    </tr>
+</table><br/><br/>
+
